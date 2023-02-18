@@ -35,6 +35,7 @@ I created my budget of $2 using AWS CLI as that is my hard stop on what I can af
 2. Recreate Logical Architectual Diagram in Lucid Charts
 
 ![Proof of Logical Architectural Diagram](assets/Cruddur_logical_architecture_design.png)
+
 [Link to the logical diagram I created on Lucid charts](https://lucid.app/lucidchart/84c1fbeb-2d78-4a5d-b3a7-fd25bfef6d03/edit?viewport_loc=-360%2C244%2C2554%2C1297%2C0_0&invitationId=inv_086abaed-b0ce-4f3d-8a91-68dba65213f9)
 
 ### Homework Challenges
@@ -42,11 +43,7 @@ For the homework challenges, I was able to do the following:
 
 - [x] Set MFA and create IAM role.
 
-- [] Use EventBridge to hookup Health Dashboard to SNS and send notification when there is a service health issue.
-
 - [x] Review all the questions of each pillars in the Well Architected Tool 
-
-- [] Create an architectural diagram to the best of my ability the CI/CD logical pipeline in Lucid Charts
 
 - [x] Research the technical and service limits of specific services and how they could impact the technical path for technical flexibility. 
 
