@@ -28,7 +28,7 @@ I created my budget of $2 using AWS CLI as that is my hard stop on what I can af
 
 1. Recreate Conceptual Diagram in Lucid Charts or on a Napkin
 
-----------IMAGE FOR NAPKIN--------
+![Proof of Napkin Diagram](assets/napkin_diagram.jpg)
 
 [Link to the conceptual diagram I recreated on Lucid chart](https://lucid.app/lucidchart/16eed53f-6f79-4ee4-bedc-a1948e5faf0d/edit?viewport_loc=-450%2C-247%2C1988%2C1009%2C0_0&invitationId=inv_2c120c99-1787-4e45-a70a-9f92df53b2ec)
 
