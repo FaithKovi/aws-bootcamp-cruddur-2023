@@ -10,4 +10,8 @@ RUN npm install
 
 EXPOSE ${PORT}
 
-CMD ["npm", "start"]
+ADD script.sh /usr/src/script.sh
+
+RUN ["chmod", "+x", "/usr/src/script.sh"]
+
+CMD [ "./script.sh"]

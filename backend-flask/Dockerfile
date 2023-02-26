@@ -11,4 +11,8 @@ ENV FLASK_ENV=development
 
 EXPOSE ${PORT}
 
-CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0", "--port=4567"]
+ADD script.sh /usr/src/script.sh
+
+RUN ["chmod", "+x", "/usr/src/script.sh"]
+
+CMD [ "./script.sh" ]
