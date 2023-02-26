@@ -1,16 +1,14 @@
 # Week 1 — App Containerization
 
 ## VSCode Docker Extension
-
-Docker for VSCode makes it easy to work with Docker
-
-https://code.visualstudio.com/docs/containers/overview
+I used [Docker for VScode extension](https://code.visualstudio.com/docs/containers/overview)
 
 > Gitpod is preinstalled with this extension
 
 ## Containerize Backend
 
 ### Run Python locally on gitpod
+I used the following commands
 
 ```sh
 cd backend-flask
@@ -20,15 +18,15 @@ python3 -m flask run --host=0.0.0.0 --port=4567
 cd ..
 ```
 
-- make sure to unlock the port on the port tab
-- open the link for 4567 in your browser
+- made sure to unlock the port on the port tab
+- opened the link for 4567 in my browser
 - append to the url to `/api/activities/home`
-- you should get back json
+- I got back json
 
 ## Containerize backend
 ### Add Dockerfile 
 
-Create a file here: `backend-flask/Dockerfile`
+Created a file here: `backend-flask/Dockerfile`
 
 ```dockerfile
 FROM python:3.10-slim-buster
@@ -135,7 +133,7 @@ docker image rm backend-flask --force
 FLASK_ENV=production PORT=8080 docker run -p 4567:4567 -it backend-flask
 ```
 
-> Look at Dockerfile to see how ${PORT} is interpolated
+> Looked at Dockerfile to see how ${PORT} is interpolated
 
 ## Containerize Frontend
 
@@ -216,7 +214,7 @@ networks:
 We are going to use Postgres and DynamoDB local in future labs
 We can bring them in as containers and reference them externally
 
-Lets integrate the following into our existing docker compose file:
+Integrated the following into our existing docker compose file:
 
 ### Postgres
 
@@ -289,8 +287,25 @@ volumes:
     driver: local
 ```
 
-## Homework Challenges
+After adding the 4 services in docker compose, the application was running.
+## Proof of application running
+![Proof of application](assets/frontend-main.png)
 
+## Notifications
+Wrote a Flask Backend Endpoint for Notifications and Created a React Page for Notifications
+I navigated to `/notifications`
+![Proof](assets/notifs-main.png)
+
+## SignUp and Login
+![SignUp and Login](assets/login-main.png)
+
+
+## Homework Challenges
+- [x] Run the dockerfile CMD as an external script
+Proof - [Commit reference](https://github.com/FaithKovi/aws-bootcamp-cruddur-2023/commit/928c564df5ec6d130dfd4511f42a1c91554999b8)
+- [x] Push and tag a image to DockerHub
+  - [Frontend Image](https://hub.docker.com/r/faithkovi/cruddur-frontend-react-js)
+  - [Backend Image](https://hub.docker.com/r/faithkovi/cruddur-backend-flask)
 
 ## References
 
