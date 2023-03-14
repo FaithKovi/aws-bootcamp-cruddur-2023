@@ -7,8 +7,8 @@ I was able to complete the homework challenges for this week
 
 
 ```sh
-export AWS_REGION="ca-central-1"
-gp env AWS_REGION="ca-central-1"
+export AWS_REGION="us-east-1"
+gp env AWS_REGION="us-east-1"
 ```
 
 Add to the `requirements.txt`
