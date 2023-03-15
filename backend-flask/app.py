@@ -5,6 +5,7 @@ import os
 import sys
 
 from services.home_activities import *
+from services.notifications_activities import *
 from services.user_activities import *
 from services.create_activity import *
 from services.create_reply import *
@@ -177,6 +178,12 @@ def data_home():
     app.logger.debug("unauthenicated")
     data = HomeActivities.run()
   return data, 200
+
+@app.route("/api/activities/notifications", methods=['GET'])
+def data_notifications():
+  data = NotificationsActivities.run()
+  return data, 200
+
 
 @app.route("/api/activities/@<string:handle>", methods=['GET'])
 @xray_recorder.capture('activities_users')
