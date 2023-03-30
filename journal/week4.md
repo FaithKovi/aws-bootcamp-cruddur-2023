@@ -2,6 +2,14 @@
 
 I was able to complete the homework challenges
 
+## Proof of Lambda creation
+![Proof of application](assets/lambda-creation.PNG)
+
+
+## Proof of RDS Login
+![Proof of application](assets/rds-login.PNG)
+
+
 To connect to psql via the psql client cli tool remember to use the host flag to specific localhost.
 
 ```
