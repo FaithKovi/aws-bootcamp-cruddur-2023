@@ -4,6 +4,7 @@ from flask_cors import CORS, cross_origin
 import os
 import sys
 
+from services.users_short import *
 from services.home_activities import *
 from services.notifications_activities import *
 from services.user_activities import *
@@ -57,7 +58,7 @@ processor = BatchSpanProcessor(OTLPSpanExporter())
 provider.add_span_processor(processor)
 
 # X-RAY ----------
-# xray_url = os.getenv("AWS_XRAY_URL")
+#xray_url = osgetenv("AWS_XRAY_URL")
 # xray_recorder.configure(service='backend-flask', dynamic_naming=xray_url)
 
 # OTEL ----------
@@ -167,17 +168,16 @@ def data_messages(message_group_uuid):
 @app.route("/api/messages", methods=['POST','OPTIONS'])
 @cross_origin()
 def data_create_message():
+  message_group_uuid   = request.json.get('message_group_uuid',None)
+  user_receiver_handle = request.json.get('handle',None)
+  message = request.json['message']
   access_token = extract_access_token(request.headers)
   try:
     claims = cognito_jwt_token.verify(access_token)
     # authenicatied request
     app.logger.debug("authenicated")
+    app.logger.debug(claims)
     cognito_user_id = claims['sub']
-    message = request.json['message']
-
-    message_group_uuid   = request.json.get('message_group_uuid',None)
-    user_receiver_handle = request.json.get('user_receiver_handle',None)
-
     if message_group_uuid == None:
       # Create for the first time
       model = CreateMessage.run(
@@ -194,7 +194,6 @@ def data_create_message():
         message_group_uuid=message_group_uuid,
         cognito_user_id=cognito_user_id
       )
-
     if model['errors'] is not None:
       return model['errors'], 422
     else:
@@ -202,7 +201,6 @@ def data_create_message():
   except TokenVerifyError as e:
     # unauthenicatied request
     app.logger.debug(e)
-    app.logger.debug("unauthenicated")
     return {}, 401
 
 @app.route("/api/activities/home", methods=['GET'])
@@ -223,11 +221,15 @@ def data_home():
     data = HomeActivities.run()
   return data, 200
 
-# @app.route("/api/activities/notifications", methods=['GET'])
-# def data_notifications():
-#   data = NotificationsActivities.run()
-#   return data, 200
+@app.route("/api/activities/notifications", methods=['GET'])
+def data_notifications():
+  data = NotificationsActivities.run()
+  return data, 200
 
+@app.route("/api/users/@<string:handle>/short", methods=['GET'])
+def data_users_short(handle):
+  data = UsersShort.run(handle)
+  return data, 200
 
 @app.route("/api/activities/@<string:handle>", methods=['GET'])
 # @xray_recorder.capture('activities_users')
@@ -278,6 +280,11 @@ def data_activities_reply(activity_uuid):
   else:
     return model['data'], 200
   return
+
+@app.route("/api/users/@<string:handle>/short", methods=['GET'])
+def data_users_short(handle):
+  data = UsersShort.run(handle)
+  return data, 200
 
 if __name__ == "__main__":
   app.run(debug=True)
