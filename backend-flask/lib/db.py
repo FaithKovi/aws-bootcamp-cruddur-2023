@@ -45,6 +45,7 @@ class Db:
 
     pattern = r"\bRETURNING\b"
     is_returning_id = re.search(pattern, sql)
+
     try:
       with self.pool.connection() as conn:
         cur =  conn.cursor()
@@ -53,13 +54,13 @@ class Db:
           returning_id = cur.fetchone()[0]
         conn.commit() 
         if is_returning_id:
-          return returning_id 
+          return returning_id
     except Exception as err:
       self.print_sql_err(err)
-
   # when we want to return a json object
   def query_array_json(self,sql,params={}):
     self.print_sql('array',sql,params)
+
     wrapped_sql = self.query_wrap_array(sql)
     with self.pool.connection() as conn:
       with conn.cursor() as cur:
@@ -81,7 +82,6 @@ class Db:
           "{}"
         else:
           return json[0]
-
   def query_value(self,sql,params={}):
     self.print_sql('value',sql,params)
     with self.pool.connection() as conn:
@@ -89,7 +89,6 @@ class Db:
         cur.execute(sql,params)
         json = cur.fetchone()
         return json[0]
-
   def query_wrap_object(self,template):
     sql = f"""
     (SELECT COALESCE(row_to_json(object_row),'{{}}'::json) FROM (
@@ -114,7 +113,6 @@ class Db:
     # print the connect() error
     print ("\npsycopg ERROR:", err, "on line number:", line_num)
     print ("psycopg traceback:", traceback, "-- type:", err_type)
-
 
     # print the pgcode and pgerror exceptions
     print ("pgerror:", err.pgerror)

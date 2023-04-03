@@ -59,7 +59,7 @@ provider.add_span_processor(processor)
 
 # X-RAY ----------
 #xray_url = osgetenv("AWS_XRAY_URL")
-# xray_recorder.configure(service='backend-flask', dynamic_naming=xray_url)
+#xray_recorder.configure(service='backend-flask', dynamic_naming=xray_url)
 
 # OTEL ----------
 # Show this in the logs within the backend-flask app (STDOUT)
@@ -78,7 +78,7 @@ cognito_jwt_token = CognitoJwtToken(
 )
 
 # X-RAY ----------
-# XRayMiddleware(app, xray_recorder)
+#XRayMiddleware(app, xray_recorder)
 
 # HoneyComb ---------
 # Initialize automatic instrumentation with Flask
@@ -132,36 +132,40 @@ def data_message_groups():
   access_token = extract_access_token(request.headers)
   try:
     claims = cognito_jwt_token.verify(access_token)
+    # authenicatied request
+    app.logger.debug("authenicated")
+    app.logger.debug(claims)
     cognito_user_id = claims['sub']
     model = MessageGroups.run(cognito_user_id=cognito_user_id)
     if model['errors'] is not None:
       return model['errors'], 422
     else:
       return model['data'], 200
-
   except TokenVerifyError as e:
+    # unauthenicatied request
     app.logger.debug(e)
     return {}, 401
 
+
 @app.route("/api/messages/<string:message_group_uuid>", methods=['GET'])
 def data_messages(message_group_uuid):
-  user_sender_handle = 'andrewbrown'
-  user_receiver_handle = request.args.get('user_reciever_handle')
-
   access_token = extract_access_token(request.headers)
   try:
     claims = cognito_jwt_token.verify(access_token)
+    # authenicatied request
+    app.logger.debug("authenicated")
+    app.logger.debug(claims)
     cognito_user_id = claims['sub']
     model = Messages.run(
-      message_group_uuid=message_group_uuid,
-      cognito_user_id=cognito_user_id
-    )
+        cognito_user_id=cognito_user_id,
+        message_group_uuid=message_group_uuid
+      )
     if model['errors'] is not None:
       return model['errors'], 422
     else:
       return model['data'], 200
-    return
   except TokenVerifyError as e:
+    # unauthenicatied request
     app.logger.debug(e)
     return {}, 401
 
@@ -203,8 +207,9 @@ def data_create_message():
     app.logger.debug(e)
     return {}, 401
 
+
 @app.route("/api/activities/home", methods=['GET'])
-# @xray_recorder.capture('activities_home')
+#@xray_recorder.capture('activities_home')
 def data_home():
   access_token = extract_access_token(request.headers)
   try:
@@ -226,13 +231,8 @@ def data_notifications():
   data = NotificationsActivities.run()
   return data, 200
 
-@app.route("/api/users/@<string:handle>/short", methods=['GET'])
-def data_users_short(handle):
-  data = UsersShort.run(handle)
-  return data, 200
-
 @app.route("/api/activities/@<string:handle>", methods=['GET'])
-# @xray_recorder.capture('activities_users')
+#@xray_recorder.capture('activities_users')
 def data_handle(handle):
   model = UserActivities.run(handle)
   if model['errors'] is not None:
