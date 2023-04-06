@@ -1,9 +1,25 @@
 # Week 5 — DynamoDB and Serverless Caching
 
+I was able to complete the homework challenges 
+
+Proof shown below
+
+## Dynamodb local implementation
+![Proof of local implementation](assets/list-conv.PNG)
+
+## Dynamodb production implementation
+![Proof of Dynamodb production implementation](assets/dynamo-prod.PNG)
+![Proof of Dynamodb production implementation](assets/dynamo-prod-2.PNG)
+
+## Dynamodb production logs
+Attaching ```AmazonDynamodbFullAccess``` policy to the execution role of the lambda function worked perfectly fine for me with no errors.
+![Proof of Dynamodb production logs](assets/dynamo-prod-logs2.PNG)
+
+
 ## DynamoDB Bash Scripts
 
 ```sh
-./bin/ddb/schem-load
+./bin/ddb/schema-load
 ```
 
 
