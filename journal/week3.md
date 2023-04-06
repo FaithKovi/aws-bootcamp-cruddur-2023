@@ -113,7 +113,7 @@ export default function DesktopNavigation(props) {
       handle="messages" 
       active={props.active} />
     profileLink = <DesktopNavigationLink 
-      url="/@andrewbrown" 
+      url="/@faithkovi" 
       name="Profile"
       handle="profile"
       active={props.active} />
@@ -173,7 +173,7 @@ export default function DesktopSidebar(props) {
   ]
 
   const users = [
-    {"display_name": "Andrew Brown", "handle": "andrewbrown"}
+    {"display_name": "Faith Kovi", "handle": "faithkovi"}
   ]
 
   let trending;
