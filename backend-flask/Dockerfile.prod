@@ -9,8 +9,8 @@ COPY . .
 
 EXPOSE ${PORT}
 
-ADD script.sh /usr/src/script.sh
+ADD prod_script.sh /usr/src/prod_script.sh
 
-RUN ["chmod", "+x", "/usr/src/script.sh"]
+RUN ["chmod", "+x", "/usr/src/prod_script.sh"]
 
-CMD [ "./script.sh" ]
+CMD [ "./prod_script.sh" ]
