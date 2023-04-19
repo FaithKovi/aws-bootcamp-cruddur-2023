@@ -1,8 +1,16 @@
 FROM 436046654089.dkr.ecr.us-east-1.amazonaws.com/cruddur-python:3.10-slim-buster
 
+# [TODO] For debugging, don't leave these in
+#RUN apt-get update -y
+#RUN apt-get install iputils-ping -y
+# -----
+
+# Inside Container
+# make a new folder inside container
 WORKDIR /backend-flask
 
 COPY requirements.txt requirements.txt
+
 RUN pip3 install -r requirements.txt
 
 COPY . .
