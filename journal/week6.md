@@ -1,5 +1,7 @@
 # Week 6 — Deploying Containers
 
+NOTE: This document contains content for week 6 & 7
+
 ## Defaults
 
 ```sh
@@ -571,21 +573,27 @@ docker run -rm \
 
 
 ## Provision and configure Application Load Balancer along with target groups
+ - [x] Done
 ## Manage domain using Route53 via Hosted Zone
 My domain was originally hosted on Namecheap, I created records on Route53 hosted zone.
 I set up record sets for both the naked domain(frontend) and the api subdomain(backend)
 ## Create an SSL Certificate via ACM
-
+ - [x] Done
 ## Configured CORS to only accept traffic from my domain
+ - [x] Done
 ## Secured my backend flask by not running on debug mode
 This is shown in the file `prod_script.sh`
 ## Implemented refresh token for Amazon Cognito
+ - [x] Done
 ## Refactored bin directory to be top level
+ - [x] Done
 ## Configured task definitions to contain x-ray and turn on Container Insights
+ - [x] Done
 ## Changed Docker Compose to explicitly use a user-defined network
+ - [x] Done
 ## Created Dockerfile specifically for production use case
 Initially for the backend, I used an external script for the dockerfile CMD, so for this I created another script `prod_script.sh` for the production use case.
 ## Used ruby to generate out env dot files for docker using erb templates
-Can be found in `erb` folder
+This can be found in the `erb` folder
 
 
