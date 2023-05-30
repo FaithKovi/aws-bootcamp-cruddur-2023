@@ -36,7 +36,7 @@ def handler(event:, context:)
     url # this is the data that will be returned
     body = {url: url}.to_json
     { 
-      headers: {
+      headers: { 
         "Access-Control-Allow-Headers": "*, Authorization",
         "Access-Control-Allow-Origin": "https://3000-faithkovi-awsbootcampcr-17zovyhmsu3.ws-eu98.gitpod.io",
         "Access-Control-Allow-Methods": "OPTIONS,GET,POST"
