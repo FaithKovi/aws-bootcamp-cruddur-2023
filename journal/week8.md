@@ -122,7 +122,7 @@ update the necessary codes for the profile page implementation
 Database migration is required since previously there was no column named ```bio``` 
 Run the script
 ```
-./bin/generate/migration
+./bin/generate/migration add_bio_column
 ```
 After Creating the executable scripts `bin/db/migrate` and `bin/db/rollback`, run the scripts
 To migrate
@@ -138,8 +138,8 @@ To roll back
 Create an API gateway with its invoke URL having this format - `https://<API_ID>.execute-api.<AWS_REGION>.amazonaws.com`
 To successfully implement this: 
 ### Implement a ruby function to generate a presigned URL
-- Create a basic "function.rb" in "aws/lambdas/cruddur-upload-avatar/" and run "bundle init"; edit the "Gemfile" that was generated and run "bundle install" and "bundle exec ruby function.rb" afterwards; a presigned url can be produced for neighborhood testing. The code `function.rb` displays the actual function.rb utilized in CruddurAvatarUpload.
-- In 'aws/lambdas/lambda-authorizer/', make 'index.js', run 'npm introduce aws-jwt-check - - save', Download everything in this folder and zip it, then upload it to the lambda function "CruddurApiGatewayLambdaAuthorizer."
+- Create a basic `function.rb` in `aws/lambdas/cruddur-upload-avatar/` and run `bundle init`; edit the `Gemfile` that was generated and run `bundle install` and `bundle exec ruby function.rb` afterwards; a presigned url can be generated for testing. The code `function.rb` displays the actual `function.rb` utilized in CruddurAvatarUpload.
+- In `aws/lambdas/lambda-authorizer/`, make `index.js`, run `npm introduce aws-jwt-check - - save`, Download everything in this folder and zip it, then upload it to the lambda function `CruddurApiGatewayLambdaAuthorizer`
 
 ## Testing
 Run the following commands in the terminal
@@ -150,4 +150,5 @@ cd /workspace/aws-bootcamp-cruddur-2023
 docker compose up
 ./bin/prepare
 ```
-![Proof]()
+## Proof
+![Proof](assets/final.PNG)
