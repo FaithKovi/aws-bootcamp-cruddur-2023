@@ -92,5 +92,5 @@ Resources:
               Forward: none
           ViewerProtocolPolicy: redirect-to-https
         ViewerCertificate:
-         AcmCertificateArn: !Ref CertificateArn
+          AcmCertificateArn: !Ref CertificateArn
           SslSupportMethod: sni-only
