@@ -12,39 +12,6 @@ export default function ProfileForm(props) {
     setDisplayName(props.profile.display_name);
   }, [props.profile]);
 
-  const s3upload = async (event) => {
-    const file = event.target.files[0];
-
-    const filename = file.name;
-    const size = file.size;
-    const type = file.type;
-    const preview_image_url = URL.createObjectURL(file);
-    const fileparts = filename.split(".");
-    const extension = fileparts[fileparts.length - 1];
-    const presignedurl = await s3uploadKey(extension);
-
-    console.log("presignedurl", presignedurl);
-
-    try {
-      const backend_url = `${presignedurl}`;
-      const res = await fetch(backend_url, {
-        method: "PUT",
-        body: file,
-        headers: {
-          "Content-Type": type,
-        },
-      });
-
-      if (res.status === 200) {
-        console.log("uploaded");
-      } else {
-        console.log(res);
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   const s3uploadKey = async (extension) => {
     console.log("ext", extension);
     try {
@@ -75,6 +42,41 @@ export default function ProfileForm(props) {
     }
   };
 
+  const s3upload = async (event) => {
+    const file = event.target.files[0];
+
+    const filename = file.name;
+    const size = file.size;
+    const type = file.type;
+    //const preview_image_url = URL.createObjectURL(file)
+    const fileparts = filename.split(".");
+    const extension = fileparts[fileparts.length - 1];
+    const presignedurl = await s3uploadKey(extension);
+
+    console.log("presignedurl", presignedurl);
+
+    try {
+      const backend_url = `${presignedurl}`;
+      const res = await fetch(backend_url, {
+        method: "PUT",
+        body: file,
+        headers: {
+          "Content-Type": type,
+        },
+      });
+
+      if (res.status === 200) {
+        console.log("uploaded");
+      } else {
+        console.log(res);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+
+
   const onsubmit = async (event) => {
     event.preventDefault();
     try {
@@ -93,7 +95,7 @@ export default function ProfileForm(props) {
           display_name: displayName,
         }),
       });
-      let data = await res.json();
+      //let data = await res.json();
       if (res.status === 200) {
         setBio(null);
         setDisplayName(null);
