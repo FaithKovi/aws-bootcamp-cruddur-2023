@@ -4,7 +4,6 @@ import {ReactComponent as NotificationsIcon} from './svg/notifications.svg';
 import {ReactComponent as ProfileIcon} from './svg/profile.svg';
 import {ReactComponent as MoreIcon} from './svg/more.svg';
 import {ReactComponent as MessagesIcon} from './svg/messages.svg';
-
 export default function DesktopNavigationLink(props) {
   const classes = ()=> {
     const classes = ['primary']
@@ -13,7 +12,6 @@ export default function DesktopNavigationLink(props) {
     }
     return classes.join(' ')
   }
-
   const icon = ()=> {
     switch(props.handle){
       case 'home':
@@ -31,7 +29,7 @@ export default function DesktopNavigationLink(props) {
       case 'messages':
         return <MessagesIcon className='icon' />
         break;
-        default: 
+      default: 
         break;
     }
   }

@@ -1,11 +1,9 @@
 import './MessageGroupItem.css';
 import { Link } from "react-router-dom";
-import { format_datetime, message_time_ago } from '../lib/DateTimeFormats';
+import { DateTime } from 'luxon';
 import { useParams } from 'react-router-dom';
-
 export default function MessageGroupItem(props) {
   const params = useParams();
-
   const format_time_created_at = (value) => {
     // format: 2050-11-20 18:32:47 +0000
     const created = DateTime.fromISO(value)
@@ -27,7 +25,6 @@ export default function MessageGroupItem(props) {
     }
     return classes.join(' ');
   }
-
   return (
     <Link className={classes()} to={`/messages/`+props.message_group.uuid}>
       <div className='message_group_avatar'></div>
@@ -39,8 +36,8 @@ export default function MessageGroupItem(props) {
           </div>{/* activity_identity */}
         </div>{/* message_meta */}
         <div className="message">{props.message_group.message}</div>
-        <div className="created_at" title={format_datetime(props.message_group.created_at)}>
-          <span className='ago'>{message_time_ago(props.message_group.created_at)}</span> 
+        <div className="created_at" title={props.message_group.created_at}>
+          <span className='ago'>{format_time_created_at(props.message_group.created_at)}</span> 
         </div>{/* created_at */}
       </div>{/* message_content */}
     </Link>
