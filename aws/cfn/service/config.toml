@@ -1,0 +1,8 @@
+[deploy]
+bucket = 'cfn-artifacts11'
+region = 'us-east-1'
+stack_name = 'CrdSrvBackendFlask'
+
+[parameters]
+EnvFrontendUrl = 'https://faithkoviproject.store'
+EnvBackendUrl = 'https://api.faithkoviproject.store'
