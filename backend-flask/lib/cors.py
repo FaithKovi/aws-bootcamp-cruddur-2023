@@ -11,3 +11,4 @@ def init_cors(app):
     headers=['Content-Type', 'Authorization'], 
     expose_headers='Authorization',
     methods="OPTIONS,GET,HEAD,POST"
+  )
