@@ -6,3 +6,4 @@ stack_name = 'CrdSrvBackendFlask'
 [parameters]
 EnvFrontendUrl = 'https://faithkoviproject.store'
 EnvBackendUrl = 'https://api.faithkoviproject.store'
+DDBMessageTable = 'CrdDdb-DynamoDBTable-ZQBE40XI9D8C'
