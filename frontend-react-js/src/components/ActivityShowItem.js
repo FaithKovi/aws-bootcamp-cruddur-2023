@@ -13,12 +13,17 @@ export default function ActivityShowItem(props) {
 
   const attrs = {}
   attrs.className = 'activity_item expanded'
+  const avatarstyle = {
+    backgroundImage: `url("https://assets.faithkoviproject.store/avatars/${props.activity.cognito_user_id}.jpg")`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+  };
   return (
     <div {...attrs}>
       <div className="acitivty_main">
         <div className='activity_content_wrap'>
           <div className='activity_content'>
-            <Link className='activity_avatar'to={`/@`+props.activity.handle} ></Link>
+            <Link className='activity_avatar'to={`/@`+props.activity.handle} style={avatarstyle}></Link>
             <div className='activity_meta'>
               <div className='activity_identity' >
                 <Link className='display_name' to={`/@`+props.activity.handle}>{props.activity.display_name}</Link>
