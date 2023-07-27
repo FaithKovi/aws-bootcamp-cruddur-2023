@@ -14,9 +14,15 @@ export default function ActivityContent(props) {
                   </div>
   }
 
+  const avatarstyle = {
+    backgroundImage: `url("https://assets.faithkoviproject.store/avatars/${props.activity.cognito_user_id}.jpg")`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+  };
+
   return (
     <div className='activity_content_wrap'>
-    <Link className='activity_avatar'to={`/@`+props.activity.handle} ></Link>
+    <Link className='activity_avatar'to={`/@`+props.activity.handle} style={avatarstyle}></Link>
     <div className='activity_content'>
     <div className='activity_meta'>
     <div className='activity_identity' >
