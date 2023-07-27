@@ -6,7 +6,7 @@
     "enableExecuteCommand": true,
     "loadBalancers": [
       {
-          "targetGroupArn": "arn:aws:elasticloadbalancing:us-east-1:436046654089:targetgroup/CrdClu-Backe-HRMD8HCJICNC/629c88bf6d1ab328",
+          "targetGroupArn": "arn:aws:elasticloadbalancing:us-east-1:436046654089:targetgroup/CrdClu-Backe-ULNBJ0SOKCZU/b8631ccf3115ec6d",
           "containerName": "backend-flask",
           "containerPort": 4567
       }
@@ -24,9 +24,6 @@
         ]
       }
     },
-    "propagateTags": "SERVICE",
-    "serviceName": "backend-flask",
-    "taskDefinition": "backend-flask",
     "serviceConnectConfiguration": {
       "enabled": true,
       "namespace": "cruddur",
@@ -37,5 +34,8 @@
           "clientAliases": [{"port": 4567}]
         }
       ]
-    }
+    },
+    "propagateTags": "SERVICE",
+    "serviceName": "backend-flask",
+    "taskDefinition": "backend-flask"
   }
