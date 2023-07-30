@@ -1,4 +1,4 @@
-# Week 6 — Deploying Containers
+# Week 6-7 — Deploying Containers
 
 NOTE: This document contains content for week 6 & 7
 
